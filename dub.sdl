@@ -1,0 +1,5 @@
+name "keephdalivegui"
+description "A GUI wrapper around keephdalive."
+copyright "Copyright © 2017"
+authors "Paul Crane"
+dependency "gtk-d" version="*"
