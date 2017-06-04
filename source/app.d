@@ -59,7 +59,7 @@ class KeepAliveGui
 		{
 			immutable string text = pathEditBox_.getText();
 
-			FileChooserDialog fileChooser = new FileChooserDialog("File Chooser", mainWindow_, FileChooserAction.SELECT_FOLDER);
+			FileChooserDialog fileChooser = new FileChooserDialog("Browse For Path", mainWindow_, FileChooserAction.SELECT_FOLDER);
 			fileChooser.run();
 			pathEditBox_.setText(fileChooser.getFilename());
 			fileChooser.hide();
