@@ -45,17 +45,17 @@ class KeepAliveGui
 
 	void addControls()
 	{
-		saveButton = cast(Button)builder_.getObject("saveButton");
+		pathButton_ = cast(Button)builder_.getObject("pathButton");
 		pathsTextView = cast(TextView)builder_.getObject("pathsTextView");
 		pathEditBox = cast(Entry)builder_.getObject("pathEditBox");
 
 		pathsTextView.insertText("Blah.....\nAnotherLine\nAnd another line...");
-		saveButton.addOnClicked(&onSaveButtonPressed);
+		pathButton_.addOnClicked(&onSaveButtonPressed);
 	}
 
 	void onSaveButtonPressed(Button  button)
 	{
-		if(saveButton !is null)
+		if(pathButton_ !is null)
 		{
 			immutable string text = pathEditBox.getText();
 
@@ -69,7 +69,7 @@ class KeepAliveGui
 private:
 	Builder builder_;
 	Window mainWindow_;
-	Button saveButton;
+	Button pathButton_;
 	TextView pathsTextView;
 	Entry pathEditBox;
 }
