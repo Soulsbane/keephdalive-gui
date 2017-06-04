@@ -1,4 +1,4 @@
-module builder.builderTest;
+module app;
 
 import gtk.Builder;
 import gtk.Button;
