@@ -50,10 +50,10 @@ class KeepAliveGui
 		pathEditBox_ = cast(Entry)builder_.getObject("pathEditBox");
 
 		pathsTextView_.insertText("Blah.....\nAnotherLine\nAnd another line...");
-		pathButton_.addOnClicked(&onSaveButtonPressed);
+		pathButton_.addOnClicked(&onPathButtonPressed);
 	}
 
-	void onSaveButtonPressed(Button  button)
+	void onPathButtonPressed(Button  button)
 	{
 		if(pathButton_ !is null)
 		{
