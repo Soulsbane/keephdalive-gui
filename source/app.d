@@ -45,30 +45,33 @@ class KeepAliveGui
 
 	void addControls()
 	{
-		Button saveButton = cast(Button)builder_.getObject("saveButton");
-		TextView pathsTextView = cast(TextView)builder_.getObject("pathsTextView");
-		Entry pathEditBox = cast(Entry)builder_.getObject("pathEditBox");
+		saveButton = cast(Button)builder_.getObject("saveButton");
+		pathsTextView = cast(TextView)builder_.getObject("pathsTextView");
+		pathEditBox = cast(Entry)builder_.getObject("pathEditBox");
 
 		pathsTextView.insertText("Blah.....\nAnotherLine\nAnd another line...");
+		saveButton.addOnClicked(&onSaveButtonPressed);
+	}
 
+	void onSaveButtonPressed(Button  button)
+	{
 		if(saveButton !is null)
 		{
-			saveButton.addOnClicked(delegate void(Button aux)
-			{
-				immutable string text = pathEditBox.getText();
+			immutable string text = pathEditBox.getText();
 
-				FileChooserDialog fileChooser = new FileChooserDialog("File Chooser", mainWindow_, FileChooserAction.SELECT_FOLDER);
-				fileChooser.run();
-				pathEditBox.setText(fileChooser.getFilename());
-				fileChooser.hide();
-			});
+			FileChooserDialog fileChooser = new FileChooserDialog("File Chooser", mainWindow_, FileChooserAction.SELECT_FOLDER);
+			fileChooser.run();
+			pathEditBox.setText(fileChooser.getFilename());
+			fileChooser.hide();
 		}
-
 	}
 
 private:
 	Builder builder_;
 	Window mainWindow_;
+	Button saveButton;
+	TextView pathsTextView;
+	Entry pathEditBox;
 }
 
 int main(string[] arguments)
