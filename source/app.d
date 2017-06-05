@@ -48,21 +48,29 @@ class KeepAliveGui
 		pathButton_ = cast(Button)builder_.getObject("pathButton");
 		pathsTextView_ = cast(TextView)builder_.getObject("pathsTextView");
 		pathEditBox_ = cast(Entry)builder_.getObject("pathEditBox");
+		fileChooserButton_ = cast(Button)builder_.getObject("fileChooserButton");
 
+		pathEditBox_.setSizeRequest(485, 20);
 		pathsTextView_.insertText("Blah.....\nAnotherLine\nAnd another line...");
 		pathButton_.addOnClicked(&onPathButtonPressed);
+		fileChooserButton_.addOnClicked(&onFileChooserButtonPressed);
+	}
+
+	void onFileChooserButtonPressed(Button button)
+	{
+		immutable string text = pathEditBox_.getText();
+
+		FileChooserDialog fileChooser = new FileChooserDialog("Select the path to use", mainWindow_, FileChooserAction.SELECT_FOLDER);
+		fileChooser.run();
+		pathEditBox_.setText(fileChooser.getFilename());
+		fileChooser.hide();
 	}
 
 	void onPathButtonPressed(Button  button)
 	{
 		if(pathButton_ !is null)
 		{
-			immutable string text = pathEditBox_.getText();
-
-			FileChooserDialog fileChooser = new FileChooserDialog("Browse For Path", mainWindow_, FileChooserAction.SELECT_FOLDER);
-			fileChooser.run();
-			pathEditBox_.setText(fileChooser.getFilename());
-			fileChooser.hide();
+			///Append to textview
 		}
 	}
 
@@ -72,6 +80,7 @@ private:
 	Button pathButton_;
 	TextView pathsTextView_;
 	Entry pathEditBox_;
+	Button fileChooserButton_;
 }
 
 int main(string[] arguments)
